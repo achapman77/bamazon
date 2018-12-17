@@ -1,6 +1,9 @@
+// npm packages
 var mysql = require(`mysql`);
 var inquirer = require(`inquirer`);
 var chalk = require(`chalk`);
+var Table = require('cli-table');
+
 var log = console.log;
 
 var connection = mysql.createConnection({
@@ -14,14 +17,26 @@ connection.connect(function (err) {
     if (err) throw err;
     log(`connectd as id ${connection.threadId}`);
     log(chalk.red(`WELCOME TO BAMAZON`));
-    setTimeout(renderInventory, 2500);
+    setTimeout(renderInventory, 500);
 });
+
+function renderTable(res) {
+    var productsTable = new Table({
+        head: ['ID', 'Product_Name', 'Department_Name', 'Price', ' Stock_Quantity']
+      , colWidths: [10, 40, 40, 15, 20]
+    });
+
+    for (var i = 0; i < res.length; i++) {
+        productsTable.push([res[i].id, res[i].product_name, res[i].department_name, `$${res[i].price.toFixed(2)}`, res[i].stock_quantity])
+    }
+    log(productsTable.toString());
+};
 
 function renderInventory() {
     connection.query("SELECT * FROM products", function (err, res) {
         if (err) throw err;
 
-        log(res);
+        renderTable(res);
         // connection.end();
         inquireUser();
     });
@@ -100,8 +115,8 @@ function renderPurchase(userSelection, purchaseQuantity) {
     connection.query(`SELECT * FROM products WHERE id = ${userSelection}`, function (err, res) {
         if (err) throw err;
         
-        log(res);
-        log(`Thank you for your purchase of the ${res[0].product_name}. \nYour total is $${chalk.green(res[0].price * purchaseQuantity)}.`);
+        renderTable(res);
+        log(`Thank you for your purchase of the ${res[0].product_name}. \nYour total is ${chalk.green(`$${(res[0].price * purchaseQuantity).toFixed(2)}`)}.`);
         log(chalk.red(`There are ${res[0].stock_quantity} remaining.`));
         inquirer
             .prompt([
