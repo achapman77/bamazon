@@ -68,6 +68,8 @@ function selectProduct(answer) {
         var purchaseQuantity = answer.purchaseQuantity;
         var userSelection = answer.id;
         var stock = res[0].stock_quantity;
+        var price = res[0].price;
+        var productSales = res[0].product_sales;
 
         if (err) throw err;
         // log(res);
@@ -86,16 +88,19 @@ function selectProduct(answer) {
             //updateProducts table
             
             // log(chalk.red(`There are ${remaining} remaining.`));
-            updateProducts(purchaseQuantity, stock, userSelection);
+            updateProducts(purchaseQuantity, stock, price, productSales, userSelection);
         };
     });
 }
 
-function updateProducts(purchaseQuantity, stock , userSelection) {
-    connection.query(`UPDATE products SET ? WHERE ?`,
+function updateProducts(purchaseQuantity, stock, price, productSales, userSelection) {
+    connection.query(`UPDATE products SET ?, ? WHERE ?`,
         [
             {
                 stock_quantity: (stock - purchaseQuantity)
+            },
+            {
+                product_sales: productSales + (price * purchaseQuantity)
             },
             {
                 id: userSelection
@@ -114,7 +119,7 @@ function updateProducts(purchaseQuantity, stock , userSelection) {
 function renderPurchase(userSelection, purchaseQuantity) {
     connection.query(`SELECT * FROM products WHERE id = ${userSelection}`, function (err, res) {
         if (err) throw err;
-        
+        log("this work? " + res[0].product_sales)
         renderTable(res);
         log(`Thank you for your purchase of the ${res[0].product_name}. \nYour total is ${chalk.green(`$${(res[0].price * purchaseQuantity).toFixed(2)}`)}.`);
         log(chalk.red(`There are ${res[0].stock_quantity} remaining.`));

@@ -9,6 +9,7 @@ CREATE TABLE products (
   department_name VARCHAR(100) NULL,
   price DECIMAL(13,4) NULL,
   stock_quantity INT NULL,
+  product_sales DECIMAL(13,4) NULL,
   PRIMARY KEY (id)
 );
 
@@ -25,3 +26,9 @@ VALUES  ("WHITEWATER RAFT", "OUTDOOR RECREATION", 4500.00, 4),
         ("ERECTOR SET", "TOYS", 125.25, 45);
 
 SELECT * FROM products;
+
+CREATE TABLE departments (
+  department_id INT NOT NULL AUTO_INCREMENT,
+  department_name VARCHAR(100) NULL,
+  over_head_costs DECIMAL(13,4) NULL,
+);
