@@ -19,7 +19,11 @@ The app has 3 CLI interfaces:
     * Create New Department
 
 ## Demonstration:
+* Customer: https://drive.google.com/file/d/1bpoCUODKregk8vkmgmgic0H6WyEZWoCG/view
 
+* Manager: https://drive.google.com/file/d/1-F6a9Cp-ywqy8DVSQsZ9WuNFmzTQc0xw/view
+
+* Superviser: https://drive.google.com/file/d/1g9P0MPTbuyygMp9o2pSMyBOh7aD1Hr_Y/view
 
 ## Bonus Features:
 * Tricked out CLI table to better render MySQL JSON (npm cli-table)

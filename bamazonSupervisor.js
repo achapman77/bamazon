@@ -38,9 +38,11 @@ function promptSupervisor() {
             switch (res.command) {
                 case commandArr[0]:
                     querySalesByDept();
+                    
                     break;
                 case commandArr[1]:
                     createNewDept();
+                    
                     break;
                 case commandArr[2]:
                     connection.end();
@@ -96,6 +98,7 @@ function querySalesByDept() {
         // log(res);
         // log(res[0].dept_sales);
         renderSalesByDept(res);
+        setTimeout(promptSupervisor, 2000);
     });
 };
 
@@ -120,6 +123,7 @@ function createNewDept() {
                 function (err, res) {
                     if (err) throw err;
                     querySalesByDept();
+                    setTimeout(promptSupervisor, 2000);
                 }
             )
         })
