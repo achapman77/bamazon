@@ -99,28 +99,30 @@ function addToInventory() {
                 name: `id`,
                 type: `input`,
                 message: `What product ID would you like to Update?`,
-                // validate: function (input) {
-                //     // Declare function as asynchronous, and save the done callback
-                //     var done = this.async();
+                validate: function (input) {
+                    
+                    
+                    // Declare function as asynchronous, and save the done callback
+                    var done = this.async();
                  
-                //     // Do async stuff
-                //     setTimeout(function() {
-                //     //     connection.query(`SELECT id FROM products WHERE id = ${input}`), function (err, res) {
-                //     //         if (err) throw err;
+                    // Do async stuff
+                    setTimeout(function() {
+                    //     connection.query(`SELECT id FROM products WHERE id = ${input}`), function (err, res) {
+                    //         if (err) throw err;
 
-                //     //         if (res[0].id === undefined) {
-                //     //             log(`Not a valid ID`)
-                //     //         }
-                //     //   }
-                //         if (typeof input !== 'number') {
-                //         // Pass the return value in the done callback
-                //         done('You need to provide a number');
-                //         return;
-                //       }
-                //       // Pass the return value in the done callback
-                //       done(null, true);
-                //     }, 2500);
-                // },
+                    //         if (res[0].id === undefined) {
+                    //             log(`Not a valid ID`)
+                    //         }
+                    //   }
+                        if (!parseInt(input)) {
+                        // Pass the return value in the done callback
+                        done('You need to provide a number');
+                        return;
+                      }
+                      // Pass the return value in the done callback
+                      done(null, true);
+                    }, 2500);
+                },
             },
             {
                 name: `add`,
@@ -182,7 +184,8 @@ function addNewProduct() {
                     if (err) throw err;
                     renderInventory();
                     // setTimeout(promptManager, 2500);
-                });
+                }
+            );
         });
     
 }

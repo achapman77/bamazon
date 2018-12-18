@@ -119,7 +119,7 @@ function updateProducts(purchaseQuantity, stock, price, productSales, userSelect
 function renderPurchase(userSelection, purchaseQuantity) {
     connection.query(`SELECT * FROM products WHERE id = ${userSelection}`, function (err, res) {
         if (err) throw err;
-        log("this work? " + res[0].product_sales)
+        // log("this work? " + res[0].product_sales)
         renderTable(res);
         log(`Thank you for your purchase of the ${res[0].product_name}. \nYour total is ${chalk.green(`$${(res[0].price * purchaseQuantity).toFixed(2)}`)}.`);
         log(chalk.red(`There are ${res[0].stock_quantity} remaining.`));
