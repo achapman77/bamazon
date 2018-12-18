@@ -1,8 +1,8 @@
 # bamazon
 
 ## Description:
-Bamazon is a CLI storefront. 
-The app has 3 CLI interfaces:
+Bamazon is a CLI storefront with three different CLI interfaces:
+
 * Customer Interface:
     * Takes orders, calculates total purchase, and deplete's stock from the store's inventory.
     * Before fulfilling purchase request it first checks to determine if enough stock available.
@@ -19,7 +19,7 @@ The app has 3 CLI interfaces:
     * Create New Department
 
 ## Demonstration:
-* Customer: https://drive.google.com/file/d/1bpoCUODKregk8vkmgmgic0H6WyEZWoCG/view
+* Customer: https://drive.google.com/file/d/1mJaIe5sc94aJpmzrROuinGOqkLk8ubaC/view
 
 * Manager: https://drive.google.com/file/d/1-F6a9Cp-ywqy8DVSQsZ9WuNFmzTQc0xw/view
 
@@ -30,8 +30,8 @@ The app has 3 CLI interfaces:
 * Manager & Supervisor interfaces
 
 ## Future Enhancements:
-[ ] Validation on Inquirer prompts to validate IDs exist in database
-[ ] Dynamically show available departments to select in Inquirer prompt
+* [ ] Validation on Inquirer prompts to validate IDs exist in database
+* [ ] Dynamically show available departments to select in Inquirer prompt
 
 ## Skills Practiced:
 * MySQL - Selects, Joins, Updates, Alias'
